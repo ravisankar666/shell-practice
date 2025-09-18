@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo " ravi :: hi lisa , how are you doing !"
+echo "lisa :: hello ravi , i am fine , how are you !"
+echo "ravi :: what are you learning recently"
+echo "lisa :: i am learning shell scripting ravi"
