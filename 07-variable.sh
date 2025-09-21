@@ -3,11 +3,12 @@
 #Date=$(data)
 #echo " Timestap executed : $Date"
 
-START_TIME=$(date+%s)
+START_TIME=$(date +%s)
 
-sleep 10 
+sleep 10
 
-END_TIME=$(date+%s)
-TOTAL_TIME=$(($END_TIME-$START_TIME)) 
+END_TIME=$(date +%s)
 
-echo " script executed in: $TOTAL_TIME seconds"
+TOTAL_TIME=$(($END_TIME-$START_TIME))
+
+echo "Script executed in: $TOTAL_TIME Seconds"
