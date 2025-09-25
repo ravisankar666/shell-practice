@@ -35,6 +35,7 @@ fi
 dnf list installed nginx
 if [ $? -ne 0 ]; then 
    dnf install nignx -y
+   VALIDATE$? "nginx"
 else 
    echo -e " nginx already exist ....... $y skipping $N"
 fi
@@ -42,6 +43,7 @@ fi
 dnf list installed python3
 if [ $? -ne 0 ]; then 
   dnf install python3 -y
+  VALIDATE$? "python3"
 else  
    echo -e " python3 already ......... $y skipping $N "
 fi
