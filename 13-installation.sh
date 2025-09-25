@@ -8,7 +8,7 @@ if  [  $USERIS  -ne  0 ]; then
     exit 1 # failure is other then zero
 fi
 
-dnf install mysql -y
+dnf install mysql-server -y
 
 if  [  $?   -ne  0 ]; then 
    echo “ error :: installing mysql is faillure”
