@@ -25,7 +25,7 @@ fi
 
 dnf list installed mysql 
 #intsall if it is not found
-if [ $? -ne 0]; then 
+if [ $? -ne 0 ]; then 
    dnf install mysql -y 
    VALIDATE$? "mysql"
 else 
