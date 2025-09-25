@@ -2,7 +2,7 @@
 
 USERID=$(id -u)
 
-if [ USERID -ne 0 ]; then 
+if [ $USERID -ne 0 ]; then 
    echo " Error :: please run the script with root privillage"
    exit 1 #failure other than zero
 fi
