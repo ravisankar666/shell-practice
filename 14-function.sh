@@ -15,10 +15,10 @@ fi
 VALIDATE() { # function is receiver through args just like a shell_script args
 
 if [ $1 -ne 0 ]; then 
-   echo " Error :: installation $2 ....... $R is failure $N"
+   echo -e " Error :: installation $2 ....... $R is failure $N"
    exit 1
 else 
-   echo " error :: intsallation $2 ........ $G is success $N"
+   echo -e " error :: intsallation $2 ........ $G is success $N"
 fi
 
 }
