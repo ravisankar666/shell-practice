@@ -8,7 +8,7 @@ if [ USERID -ne 0 ]; then
 
 fi
 
-dnf intsall mysql -y
+dnf intsall nginx -y
 
 if [ $? -ne 0 ]; then 
    echo " error :: installing mysql failure"
