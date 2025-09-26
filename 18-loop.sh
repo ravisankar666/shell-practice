@@ -13,7 +13,9 @@ LOG_FILE=“$LOGS_FOLDER/$SCRIPT_NAME.log”  # /var/log/shell_script/16-loop.l
 
 
 mkdir -p $LOGS_FOLDER
-echo  “ script started executed at : $(data)” | tee -a $LOG_FILE
+
+echo "Script started executed at: $(date)" | tee -a $LOG_FILE
+
 
 if  [ $USERID -ne 0 ]; then 
    echo “Error :: please run this script with root privileges “
