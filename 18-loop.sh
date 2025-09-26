@@ -13,7 +13,6 @@ LOG_FILE=“$LOGS_FOLDER/$SCRIPT_NAME.log”  # /var/log/shell_script/16-loop.l
 
 
 mkdir -p $LOGS_FOLDER
-
 echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 
 
@@ -34,18 +33,15 @@ VALIDATE(){ #function receive input through args just like a shell args
 for package in $@ 
 do
    #check package is already installed or not 
-   dnf list installed $package &>>LOG_FILE
-   
-   #if exit status is 0 , already installed . -ne 0 need to install it 
-   if [ $? -ne 0 ]; then 
-      dnf install $package -y &>>LOG_FILE
-      VALIDATE $? “$package”
-   else 
-       echo -e “ $package already installed …….. $Y SKIPPING $N “
-
-   fi 
+   dnf list installed $package &>>$LOG_FILE
+   # if exit status is 0, already installed. -ne 0 need to install it
+    if [ $? -ne 0 ]; then
+        dnf install $package -y &>>$LOG_FILE
+        VALIDATE $? "$package"
+    else
+        echo -e "$package already installed ... $Y SKIPPING $N"
+    fi
 done 
-
 
 
 
