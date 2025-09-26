@@ -9,20 +9,20 @@ Y=“\e[33m”
 N=“\e[0m”
 
 LOGS_FOLDER=“/var/log/shall-script”
-SCRIPT_NAME=$( echo $0 | cut -d “.” -f1 “)
+SCRIPT_NAME=$( echo $0 | cut -d “.” -f1 )
 LOG_FILE=“$LOGS_FOLDER/$SCRIPT_NAME.log”  # /var/log/shell_script/16-loop.log
 
 
 mkdir -p $LOGS_FOLDER
-echo  “ script started executed at : $(data)” | tee -a $LOGS_FILE
+echo  “ script started executed at : $(data)” | tee -a $LOG_FILE
 
-If  [ $USERID -ne 0 ]; then 
+if  [ $USERID -ne 0 ]; then 
    echo “Error :: please run this script with root privileges “
    exit 1
 fi
 
 VALIDATE(){ #function receive input through args just like a shell args
-  If [ $1 -ne 0 ]; then 
+  if [ $1 -ne 0 ]; then 
      echo -e “installing $2 ….. $R FAILURE $N” | tee -a  $LOG_FILE
      exit 1
   else 
