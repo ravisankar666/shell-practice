@@ -22,8 +22,9 @@ string!=strinfg
 ## function
 
 take some input's and given some output
-1.call it 
-2.provide input's if required
+
+- call it 
+- provide input's if required
 
 syntax
 
