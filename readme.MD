@@ -241,11 +241,22 @@ this replace word linux to unix in first occurrence
 
 example-2:-
 
+change a keyword in which we have the delimiter that is slash
+
+www replace with abc
+
 ```
 http://www.yahoo.com
 
 cat scd1 | sed 's/http:\/\/www/abc/'
 
 abc.yahoo.com
+
+```
+
+```
+cat sed1 | sed 's/linux/[&]'
+
+[linux] is an open source Operating system
 
 ```
