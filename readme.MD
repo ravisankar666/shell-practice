@@ -99,6 +99,7 @@ Method 1
 Method2: bash for loop using c like syntax
 
 The second form of the for loop is similar to the for loop in C programming language , which has there expressions (initization,condition and updation)
+
 ```
 for (( expr1;expr2;expr3 ))
 do
@@ -143,8 +144,8 @@ what does tee command ?
 
 it take the output and send it to two places:
 
-1.the screen
-2.A file
+- the screen
+- A file
 
 #### example:-
 
@@ -224,5 +225,6 @@ awk '$1 > 200' awkfile
 
 Sed stand for stream editor and it can perform lot's of function on file like serching find and replace , insertion and deletion. Though most common use of SED command in UNIX,LINUX i=s for substitution or for find and replace. by using SED
 you can edit files even without opening it, which is much quicker way to find replace something in file, than first Opening that file in VI Editor and then shanging it.
+
 
 
