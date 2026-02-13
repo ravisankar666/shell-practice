@@ -77,7 +77,7 @@ A loop is a powerful programming tool that enable you to execute a set of comman
 
 Bash shell can repeat particlular instruction again and again, until particular condition satisfies, A group of instruction that is executed repeatedly is called a loop.
 
-TYPE OF LOOPS :-
+#### TYPE OF LOOPS :-
 ==============
 
 The for loop
@@ -216,6 +216,6 @@ awk '$1 > 200' awkfile
 ## Sed
 
 Sed stand for stream editor and it can perform lot's of function on file like serching find and replace , insertion and deletion. Though most common use of SED command in UNIX,LINUX i=s for substitution or for find and replace. by using SED
-you can edit files even without opening it, which is much quicker way to find replace something in file, than first Opening that file in VI Editor and thwn shanging it.
+you can edit files even without opening it, which is much quicker way to find replace something in file, than first Opening that file in VI Editor and then shanging it.
 
 
