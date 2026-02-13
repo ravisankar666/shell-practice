@@ -143,6 +143,7 @@ it take the output and send it to two places:
 2.A file
 
 #### example:-
+
 ```
 ls | tee list.txt | less
 
