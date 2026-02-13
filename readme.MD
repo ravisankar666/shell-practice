@@ -227,4 +227,25 @@ Sed stand for stream editor and it can perform lot's of function on file like se
 you can edit files even without opening it, which is much quicker way to find replace something in file, than first Opening that file in VI Editor and then shanging it.
 
 
+#### example:-
 
+```
+cat scrl | sed 's/Linux/Unix/g'
+```
+this command replace words linux to unix in all occurrence.
+```
+cat scrl | sed 's/Linux/Unix/2'
+```
+
+this replace word linux to unix in first occurrence
+
+example-2:-
+
+```
+http://www.yahoo.com
+
+cat scd1 | sed 's/http:\/\/www/abc/'
+
+abc.yahoo.com
+
+```
