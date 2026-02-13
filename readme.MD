@@ -13,11 +13,11 @@ ne -------> not equal to
 ## String Comparison
 
 String comparison can be done using test,if..else..elif commands.
-
+```
 string1=string2
 string!=strinfg 
 -z string
-
+```
 
 ## function
 
@@ -49,10 +49,12 @@ func_name()
 
 [ -b  /dev/scd ] && echo "block special file found" || echo "block special file not found"
 
+```
 #!/bin/bash
 #Directory Creation
 DEST=/tmp/myscript/mydir
 [ ! -d$DEST ] && mkdir -p "$DEST" || echo "$DEST" already exists.
+```
 
 ## shell command parameter
 
