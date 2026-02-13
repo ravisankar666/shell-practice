@@ -82,7 +82,7 @@ Bash shell can repeat particlular instruction again and again, until particular 
 
 The for loop
 The While loop
-
+```
 Method 1  
  for Varname in list
  do
@@ -91,11 +91,11 @@ Method 1
 
  ..
  done
-
+```
 Method2: bash for loop using c like syntax
 
 The second form of the for loop is similar to the for loop in C programming language , which has there expressions (initization,condition and updation)
-
+```
 for (( expr1;expr2;expr3 ))
 do
 command1
@@ -103,11 +103,12 @@ command2
 
 ...
 done
-
+```
 #### example:-
-
+```
 [ $# -eq 0 ] && { echo "you have not passed any argument"; exit 1;} 
-
+```
+```
 for i in $*
 do
 echo 
@@ -115,23 +116,23 @@ echo "< $i >"
 [ -f $i ] && cat $i || echo " $i file not found"
 echo "-----------------------------"
 done
-
+```
 
 ## Pipleline
 
 Pipe is used to combine two or more command and in this the output of one command act as input to another command , and this command output may act as  input to the next command and so on.
 
 Syntax:-
-
+```
 command_1 | command_2 | command_3 | command_4 |....|command_N
-
+```
 #### Example:-
-
+```
 ls -ltr | less
 ls -ltr | wc -l
 ls -ltr | head -n 10
 ls -ltr | tail -n 10
-
+```
 ## tee command:-
 
 what does tee command ?
@@ -142,15 +143,15 @@ it take the output and send it to two places:
 2.A file
 
 #### example:-
-
+```
 ls | tee list.txt | less
 
 ls -ltr | head -n 10 | tee /tmp/abc
-
+```
 tee command basicly use in pipe line's only
 
 ## file discriptors
-
+```
 0 -----> input ,keyboard
 1 ------> output , Terminal
 2 -------> error , terminal
@@ -158,7 +159,7 @@ tee command basicly use in pipe line's only
 
 > ------------> output
 < -------------> input
-
+```
  user defined file descriptor
 
  exec 7> /tmp/output.txt
@@ -170,20 +171,21 @@ note:-
 everything store in out.txt file .
 
 #### example:-
-
+```
 #!/bin/bash
 exex 5> /tmp/abc.txt
 echo "this is my new file" >&5
 cat /etc/redhat-release >&5
 uptime >&5
+```
 -------------------------------
 
 input example
-
+```
 exec 9< /etc/abc
 
 cat <&9 ---this command show file content
-
+```
 this is my input file
 
 close 9 discriptor
@@ -197,22 +199,22 @@ awk is a programming language which allows easy manioulation of structrued data 
 awk is mostly used for pattern scanning and processing . it search one or more files to see if they contain lines that matches with specified pattern and then perform associated action.
 
 example :-
-
+```
 cat awsfile | awk ' {print $2} '
 
 $2 ---> second colom
-
+```
 if you wanna search particular word 
-
+```
 cat awkfile | awk ' /god/ '
 
 
 awk '<colom-number>  ~/word/' <-file_name->
-
+```
 search for number more than 200
-
+```
 awk '$1 > 200' awkfile
-
+```
 ## Sed
 
 Sed stand for stream editor and it can perform lot's of function on file like serching find and replace , insertion and deletion. Though most common use of SED command in UNIX,LINUX i=s for substitution or for find and replace. by using SED
