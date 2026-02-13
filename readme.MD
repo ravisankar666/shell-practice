@@ -1,13 +1,14 @@
 ## Numeric comparison
 
 Operators are eq,ge,gt,le,lt,ne
-
+```
 eq ----> equal to
 ge -----> greater than or equal
 gt ------> greater than
 le -------> less than or equal to
 lt -------> less than
 ne -------> not equal to
+```
 
 ## String Comparison
 
