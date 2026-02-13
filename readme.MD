@@ -33,7 +33,7 @@ func_name(){
 func_name()
 
 ## file attribites comparison
-
+```
 -b file : file exists and is block special
 -c file : file exists and is character special
 -d file : file exists and is a directory
@@ -41,7 +41,7 @@ func_name()
 -f file : file exists and is a regular file 
 -g file : file exists and is set-group-id
 -G file : file exists and owned by effective group ID.
-
+```
 #### example:-
 
 [ -a /etc/reslov.conf ] && echo "File found" || echo "not found"
@@ -56,7 +56,7 @@ DEST=/tmp/myscript/mydir
 ## shell command parameter
 
 #### example :-
-
+```
 #!/bin/bash
 
 echo `uptime`
@@ -65,7 +65,7 @@ echo "The value of first argumnet : $1"
 echo "The value of second argumnet : $2"
 echo " The value of Third argumnet : $3"
 echo "Total number of argumnet passwd to the script : $#"
-
+```
 each argument has been denoted by some positions .
 
 Print all the argumnet's passed to the script :- $@ , $ *
