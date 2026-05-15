@@ -1,0 +1,326 @@
+shell is process , it's automate your day to day activity's it called shell-script 
+collection of command execute togther in linux terminal it know as shell
+shell is a interface it talk to the kernal .
+
+ how to write a shell-scripting ?
+
+ go to the aws , create a virtual machine and execute shell-script.
+shell-scripting extension ---( .sh)
+#!---------------> this is called she-bang
+#!/bin/bash or sh or ksh --- when ever writing a shell script and you are executing the shell-script somebody has to take your action
+bash , ksh,sh dash ---> those are differnet options , this is the executable that i want to use for executing my shell-scripting.
+them have own syntax differences , there is not much differnece and little and slightly syntax differences between bash , ksh ,sh , dash.
+
+mostly use executable is bash or sh , sh executable internaly pointing bash executable.
+
+
+
+
+
+
+
+
+first-shell-script.sh
+
+#!/bin/bash
+
+echo " my name is ravi"
+
+how do execute the file ?
+
+sh < file-name>
+./ < file-name>
+
+---
+
+
+linux main purpose is security, if you try to execute the file , first it will ask who are you, what kind of permission's you have, you got executing permission , then it's allow to execute the that file.
+when ever you create file , you have grand the permission that file.
+chmod is the commnad grand permission to the file's. it provides permission,s
+ch stands for change , mod stands for 
+chmod-----> what are the permission , what are permission to admin, what are permission to group
+all user, your group , you.
+using number grand permission to the file's.
+you want to grand access to the everybody , you can apply chmod 777 file name . followed by the name of the file .
+
+4---read
+2----- write
+1------execute
+
+user man owner
+group
+everybody
+
+4+1+2=7
+
+------
+
+
+simple.sh 
+
+#!/bin/bash
+
+# create a folder 
+ mkdir ravi
+
+ # create two files
+
+ cd ravi
+ touch firstfile secondfile
+
+ ---    
+ |
+ |
+ |
+ now we granding the permisssion to this file 
+ chmod 777 followed by file name < ravi>
+
+ -----
+
+ rm is a command it will delete the files or dir
+ rm -rf----> forcely
+------------------------
+
+
+
+
+# what is purpose of shell-script in devops ?
+
+** as devops engineer you have different activities like 
+you have infra maintenances ( maintain all infra in your company)
+you maintain all code in your organizations using git repo's.
+most of the organization prefer to use linux because of the security and lightweight nature of the linux.
+and you also do configation management so for all of these purposes on a  day day basis you use shell-scripting .
+
+
+------------------------
+
+df | free | nproc | top
+
+custom node-script.sh
+
+#!/bin/bash
+
+#####################
+#   author : ravi
+#   date: 2025
+# this script output the node health
+# version: v1
+#
+########################
+
+df -h
+
+free -g
+
+nproc
+
+
+----------
+note:-
+date is a system default 
+date command it send the output. to stdin
+| command it only recieve output from stdout channel
+
+-----
+AWK:-
+most using command awk is very power command 
+awk is pattern scaning 
+awk is filter out information from your output 
+
+the differnece between grep and awk command ?
+*
+grep command directly review the entire statements or the intent sentances 
+
+awk is every powerful that it can also give you specific columns from the output
+
+
+example:-
+ps -ef | grep " amazon" | awk -F" " '{print $2}'
+
+using the awk easy to retrieve all the columns 
+
+
+
+------
+set -e , when ever write script , use set -e , if there is any error , exit the script.
+
+
+
+-----------
+
+
+find command it is very powerful command , 
+
+find / ---> find everything( all files and all folder's in this virtual machine.)
+exmaple:-
+find / -name pam.d
+
+---------
+
+if loop
+ifelse loop
+for loop
+
+if else example:-
+syntax:-
+
+if [expression]
+then
+    condition
+else
+     condition
+fi
+
+let take simple example;-
+
+a=4
+b=10
+
+if [ $a > $b ]
+then 
+   echo " a is great than b"
+else 
+   echo " b is greater than a "
+fi      
+
+---------------
+
+# iterations -> for
+
+for i in {1.100}; do echo $1; done
+
+-------
+
+trap command is a very tricky command 
+trap basucally use for trap the signals 
+it is continuosly printing 
+stop process 
+control +c 
+
+-------
+
+cronjob ---> if u create a cronjob , linux process will wait for the 7 pm and once the time is set to 7 pm it automatically execute the shell script for you.
+this is the concepts of corn job.
+you intigrating shell-script into cronjob.
+
+----
+
+
+if condition example :-
+
+installing.sh
+
+#!/bin/bash
+
+USERID=$(id -u)
+
+if [ $USERID -ne 0 ]; then 
+ echo "ERROR :: Please run this script with root privillage"
+ exit 6 # failure is other than Zero
+fi 
+
+dnf install mysql -y
+
+if [ $? -ne 0 ]; then 
+    echo "ERROR :: installing mysql is failure"
+    exit 6
+else
+   echo "SUCCESS ::  installing mysql is success"
+fi
+
+-----x0---
+
+for reuseability 
+we using function:- take some input and gives some output
+
+1.call it
+2. provide input if required
+
+syntax:-
+
+function_name(){
+
+}
+
+function_name
+
+example:-
+
+#!/bin/bash
+USERID=($id -u)
+
+if [ $USERID -ne 0 ]; then
+echo "ERROR :: please run script with root privillege"
+exit 1
+fi
+
+VALIDATE(){ # function recevie input through args just like shell script args
+    if [ $1 -ne 0 ]; then 
+        echo "ERROR :: installing $2 is failure"
+        exit 6
+    else
+       echo "installing $2 is success"
+    fi       
+}
+
+dnf install mysql -y 
+
+VALIDATE $? "mysql"
+
+dnf install nginx -y
+
+VALIDATE $? "nginx"
+
+----------x-------
+redirections:-
+=============
+
+1 -> success
+2 -> failure
+& -> success/failure
+
+>> --> addded
+
+
+example:-
+
+USESRID=$(id -u)
+
+LOG_FOLDER="/var/logs/shell-script"
+LOGS_FILE=$( echo $0 | cut -d "." -f1 )
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+
+mkdir -p $LOGS_FOLDER
+
+echo "script started executed at : $(date)"
+
+if [ $USERID -ne 0 ]; then 
+   echo " script run with root privilege"
+   exit 6
+fi
+
+
+VALIDATE(){ # function recevie input through args just like shell script args
+    if [ $1 -ne 0 ]; then 
+        echo "ERROR :: installing $2 is failure"
+        exit 6
+    else
+       echo "installing $2 is success"
+    fi       
+}
+
+dnf list install mysql -y &>>$LOG_FILE
+
+
+if [ $? -ne 0 ]; then 
+   dnf indtall muysql -y &>>$LOG_FILE
+else   
+    
+VALIDATE $? "mysql"
+fi
+
+
+
+-------------x------
+

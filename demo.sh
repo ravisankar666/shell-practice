@@ -88,7 +88,31 @@
 #==================================================
 
 
+# for $package in $@
+# do
+#     dnf list install $package &>>$LOG_FILE
+
+#     if [ $? -ne 0 ]; then
+#         dnf install $packeage -y &>>$LOG_FILE
+#         VALIDATE $? "$package"
+#     else
+#          echo " $package is alrady installed"
+#     fi
+# done             
 
 
+
+#  CPU_USAGE=$( top | awk '{print $3}' |head -n 3)
+#  CPU_THRESHOLD=80
+#  IPADDRESS=$(curl -s http://acmhsdbgjknskrdjbvjkrsnv)
+#  ALRET_MESSAGE=""
+
+#  while IFS=read -r line;
+#     do
+#        USAGE=$(echo $line | cut -d "." -f2)
+#          if [ $USAGE -ge $CPU_THRESHOLD ]; then
+#                 ALERT_MESSAGE+="High CPU usage detected: $USAGE % \n"
+#             fi
+#     done <<< "$CPU_USAGE"
 
 
