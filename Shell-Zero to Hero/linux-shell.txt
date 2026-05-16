@@ -303,10 +303,10 @@ fi
 
 VALIDATE(){ # function recevie input through args just like shell script args
     if [ $1 -ne 0 ]; then 
-        echo "ERROR :: installing $2 is failure"
+        echo "ERROR :: installing $2 is failure" | tee -a $LOG_FILE
         exit 6
     else
-       echo "installing $2 is success"
+       echo "installing $2 is success" | tee -a $LOG_FILE
     fi       
 }
 
@@ -323,4 +323,102 @@ fi
 
 
 -------------x------
+
+example script's:-
+
+1.check shipping service
+delete old log files
+
+/var/log/nginc-logs
+
+example---catalogue.log
+
+delete  10 days old logs files
+log.sh 
+------
+
+steps:-
+1.find the files . only .log file
+2.older than 14 days
+3.then delete
+4.find path  -name "*.log" -type f  -mtime +14   or find < path > -name "*.log" -type f -mtime +14 -size +10kb
+du -sh /var/log/catalogue/catalogue.log ---> it show's size of the file.
+
+delete old log file.sh
+#!/bin/bash 
+
+USERID=(id -u)
+
+LOGS_FOLDER="/var/log/shell-script"
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+
+mkdir -p $LOGS_FOLDER
+
+echo "script started executed at: $(date)" | tee -a $LOG_FILE
+
+SOURCE_DIR=/home/ec2-user/app-logs
+
+if [ ! -d $SOURCE_DIR ]; then 
+    echo  -e " ERROR :: $SOURCE_DIR does not exist"
+    exist 6
+fi
+
+FILESTO_DELETE=$(find $SOURCE_DIR -name "*.log" type -f -mtime +14)
+
+reading the file
+
+while IFS= read -r filepath; do
+       rm -rf $filepath
+done <<< $FILESTO_DELETE    # if it is variable , that's why use three <<< symbals.
+
+
+
+
+{
+   i will check source dir exist or not 
+   find the files
+   log  files going to be delete
+   delete files
+}
+
+
+
+backup script
+==============
+source dir
+destination dir
+
+find the file older then 14 days
+zip them
+move to destination
+some team will pick those files and keep them in storage servers
+delete the files in source dir
+
+
+
+
+backup_script.sh
+------------
+
+#!/bin/bash
+
+USERID=(id -u)
+
+LOGS_FOLDER="/var/log/shell-script"
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
+
+mkdir -p $LOGS_FOLDER
+
+
+echo "script started executed at: $(date)" | tee -a $LOG_FILE
+
+SOURCE_DIR=/home/ec2-user/app-logs
+
+if [ ! -d $SOURCE_DIR ]; then 
+    echo  -e " ERROR :: $SOURCE_DIR does not exist"
+    exist 6
+fi
+
 
