@@ -535,4 +535,30 @@ script failed in prod , because zip commnad was not installed , so i made it ava
 
 
 
+monitoring
+----------
+how can u check disk utilization ?
+
+ideal--> free
+
+
+cpu-usage.sh
+-------------
+#!/bin/bash
+
+DISK_USAGE=$(df -hT | grep -v Filesystem)
+DISK_THERESHOLD=75
+
+while IFS read -r line
+do
+   USAGE = $(echo $line | awk '{print $6}' | cut -d "%" -f1)
+   PARTITION=$(echo $line | aws '{print $7}')
+   if [ $USAGE -ge $DISK_THRESHOLD ]; then
+       echo "High usage on $PARTITION: $USAGE"
+   fi    
+
+done <<< $DISK_USAGE   
+
+
+
 
