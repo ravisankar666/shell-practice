@@ -519,6 +519,10 @@ crontab.sh
 # cronjobtab for every week backup the old logfiles.
 #################
 
+everyday at 2:30AM
+
+30 2 * * * 
+
 
 
 
