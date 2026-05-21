@@ -396,6 +396,10 @@ some team will pick those files and keep them in storage servers
 delete the files in source dir
 
 
+sh backup.sh < source-dir > < destination-dir > < days>[optional]
+1.check 2 args recevied or not
+2.check source dir exit or not
+3.check destination dir exit or not
 
 
 backup_script.sh
@@ -404,6 +408,10 @@ backup_script.sh
 #!/bin/bash
 
 USERID=(id -u)
+SOURCE_DIR=$1
+DEST_DIR=$2
+DAYS=$(3:-14) # if not provided considered as 14 days
+
 
 LOGS_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
@@ -414,11 +422,104 @@ mkdir -p $LOGS_FOLDER
 
 echo "script started executed at: $(date)" | tee -a $LOG_FILE
 
-SOURCE_DIR=/home/ec2-user/app-logs
 
-if [ ! -d $SOURCE_DIR ]; then 
-    echo  -e " ERROR :: $SOURCE_DIR does not exist"
-    exist 6
+if [ $USERID -ne 0 ]; then
+    echo "ERROR:: Please run this script with root privillege"
+    exit 6
 fi
+
+USAGE(){
+    echo "USAGE :: sudo sh backup.sh < source-dir > < destination-dir > < days>[optional] "
+    exit 6
+}
+
+if [ $# -lt 2 ]; then
+   USAGE
+fi
+
+if [ ! -d $SOURCE_DIR ]; then
+   echo "source $SOURCE_DIR is not exist"
+   exit 1
+fi   
+
+if [ ! -d $DEST_DIR ]; then 
+   echo " Destination $DEST_DIR does not exit"
+   exit 1
+fi
+
+FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +14 )
+
+if [ -z "${FILES}" ]; then 
+    echo "files found"
+    TIMESTEMP=$(date +%F-%H-%M)
+    ZIP_FILE_NAME="$DEST_DIR/app-logs-$TIMESTEMP.zip"
+    echo "Zip file name : $ZIP_FILE_NAME"
+    echo $FILES | zip -@ -J "$ZIP_FILE_NAME"
+
+else
+   echo "No files to archeive .... SKIPPING"
+fi
+
+if [ -f $ZIP_FILE_NAME2]; then
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cronbob.sh
+------------
+
+1.check source_dir and dest_dir is given or not 
+2.check whether they are are exist or not
+3.then find the *.log file
+4.zip them and move to dest_dir
+5.if zipping is success then delete.
+
+low traffic days , low traffic hours
+
+12:00AM to 06:00AM
+
+crontab
+-------
+we can schedule the script using crontabs,
+A scheduler in linux server's.
+
+how would be the crontab
+let's see
+
+*  min 
+*  hours
+*  day
+* month
+* day(weeK)
+
+*****
+
+
+crontab.sh
+----------
+#!/bin/bash
+
+################
+# author : ravi
+# cronjobtab for every week backup the old logfiles.
+#################
+
+
+
 
 
