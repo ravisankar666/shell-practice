@@ -524,6 +524,15 @@ everyday at 2:30AM
 30 2 * * * 
 
 
+50 server.....
+clone scripts
+schedule in crontab
+
+you took some sample server, you developed script. tested it working fine.
+then you installed this as crontab in all the servers
+
+script failed in prod , because zip commnad was not installed , so i made it avaiable in the script again.....
+
 
 
 
